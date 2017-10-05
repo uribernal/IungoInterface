@@ -11,8 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.uri.iungointerface.R;
 import com.example.uri.iungointerface.Values;
-import com.example.uri.iungointerface.db.Message;
-import com.example.uri.iungointerface.db.User;
+import com.example.uri.iungointerface.db.classes.Message;
 
 import java.util.ArrayList;
 import java.util.List;

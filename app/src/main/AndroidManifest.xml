@@ -18,8 +18,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.login.LoginActivity" />
-        <activity android:name=".activities.plans.PlanActivity" />
         <activity android:name=".activities.plans.PlansActivity" />
+        <activity android:name=".activities.plans.MyPlansActivity" />
+        <activity android:name=".activities.plans.PlanActivity" />
         <activity android:name=".activities.profile.ProfileActivity" />
         <activity android:name=".activities.profile.MyProfileActivity" />
         <activity android:name=".activities.profile.ShowFullScreenImage" />

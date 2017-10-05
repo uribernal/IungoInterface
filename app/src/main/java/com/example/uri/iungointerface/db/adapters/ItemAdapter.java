@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.uri.iungointerface.R;
-import com.example.uri.iungointerface.db.Item;
+import com.example.uri.iungointerface.db.classes.Item;
 
 
 /**

@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.uri.iungointerface.R;
-import com.example.uri.iungointerface.db.Plan;
+import com.example.uri.iungointerface.db.classes.Plan;
 
 
 /**

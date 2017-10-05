@@ -13,7 +13,7 @@ import android.widget.ProgressBar;
 
 import com.example.uri.iungointerface.R;
 import com.example.uri.iungointerface.activities.BaseActivity;
-import com.example.uri.iungointerface.db.User;
+import com.example.uri.iungointerface.db.classes.User;
 import com.example.uri.iungointerface.db.adapters.UsersAdapter;
 import com.example.uri.iungointerface.db.fakeDB.fakeDbUsers;
 

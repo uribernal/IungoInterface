@@ -1,4 +1,4 @@
-package com.example.uri.iungointerface.db;
+package com.example.uri.iungointerface.db.classes;
 
 import android.os.Parcel;
 import android.os.Parcelable;

@@ -20,12 +20,13 @@ import com.example.uri.iungointerface.R;
 import com.example.uri.iungointerface.Values;
 import com.example.uri.iungointerface.activities.chat.ChatActivity;
 import com.example.uri.iungointerface.activities.chat.FriendsActivity;
+import com.example.uri.iungointerface.activities.plans.MyPlansActivity;
 import com.example.uri.iungointerface.activities.plans.PlansActivity;
 import com.example.uri.iungointerface.activities.profile.MyProfileActivity;
 import com.example.uri.iungointerface.activities.profile.ProfileActivity;
 import com.example.uri.iungointerface.activities.settings.SettingsActivity;
-import com.example.uri.iungointerface.db.Item;
-import com.example.uri.iungointerface.db.User;
+import com.example.uri.iungointerface.db.classes.Item;
+import com.example.uri.iungointerface.db.classes.User;
 import com.example.uri.iungointerface.db.adapters.ItemAdapter;
 import com.example.uri.iungointerface.db.fakeDB.fakeDbUsers;
 
@@ -112,8 +113,8 @@ public class BaseActivity extends AppCompatActivity implements Values, Navigatio
 
         } else if (id == R.id.nav_myplans) {
             if(!this.getClass().getSimpleName().equals("MyPlansActivity")) {
-                //Intent intent = new Intent(getApplicationContext(), MyPlansActivity.class);
-                //startActivity(intent);
+                Intent intent = new Intent(getApplicationContext(), MyPlansActivity.class);
+                startActivity(intent);
             }
         } else if (id == R.id.nav_friends) {
             if(!this.getClass().getSimpleName().equals("AmigosActivity")) {

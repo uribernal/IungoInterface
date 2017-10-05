@@ -10,8 +10,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.uri.iungointerface.R;
-import com.example.uri.iungointerface.db.Chat;
-import com.example.uri.iungointerface.db.User;
+import com.example.uri.iungointerface.db.classes.Chat;
+import com.example.uri.iungointerface.db.classes.User;
 
 import java.util.ArrayList;
 

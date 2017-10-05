@@ -12,8 +12,8 @@ import android.widget.ProgressBar;
 
 import com.example.uri.iungointerface.R;
 import com.example.uri.iungointerface.activities.BaseActivity;
-import com.example.uri.iungointerface.db.Chat;
-import com.example.uri.iungointerface.db.User;
+import com.example.uri.iungointerface.db.classes.Chat;
+import com.example.uri.iungointerface.db.classes.User;
 import com.example.uri.iungointerface.db.adapters.ChatAdapter;
 import com.example.uri.iungointerface.db.fakeDB.fakeDbChats;
 import com.example.uri.iungointerface.db.fakeDB.fakeDbUsers;

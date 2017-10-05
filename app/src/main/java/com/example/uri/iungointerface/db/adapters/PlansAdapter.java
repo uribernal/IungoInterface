@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.uri.iungointerface.R;
-import com.example.uri.iungointerface.db.Plan;
+import com.example.uri.iungointerface.db.classes.Plan;
 import com.example.uri.iungointerface.db.fakeDB.fakeDbUsers;
 
 import java.util.ArrayList;

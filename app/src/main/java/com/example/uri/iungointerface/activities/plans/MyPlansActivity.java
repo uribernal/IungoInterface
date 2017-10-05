@@ -18,31 +18,30 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.example.uri.iungointerface.R;
-import com.example.uri.iungointerface.activities.BaseActivity;
-import com.example.uri.iungointerface.db.classes.Plan;
-import com.example.uri.iungointerface.db.adapters.PlansAdapter;
-import com.example.uri.iungointerface.db.fakeDB.fakeDbPlans;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import com.example.uri.iungointerface.R;
+import com.example.uri.iungointerface.activities.BaseActivity;
+import com.example.uri.iungointerface.db.adapters.PlansAdapter;
+import com.example.uri.iungointerface.db.classes.Plan;
+import com.example.uri.iungointerface.db.fakeDB.fakeDbPlans;
+import com.example.uri.iungointerface.db.fakeDB.fakeDbUsers;
 
-import static java.lang.Thread.sleep;
 
-
-public class PlansActivity extends BaseActivity {
+public class MyPlansActivity extends BaseActivity {
     private RecyclerView recyclerView;
     private PlansAdapter adapter;
     private List<Plan> planList;
     private FloatingActionButton add_plan;
+    private PlanActivity.OnFragmentInteractionListener mListener;
     private TextView noPlans;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = (LayoutInflater) this
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View contentView = inflater.inflate(R.layout.activity_plans, null, false);
         drawer.addView(contentView, 0);
 
@@ -52,7 +51,6 @@ public class PlansActivity extends BaseActivity {
         // Load plans from DB
         preparePlans();
 
-        // Click on listener
         recyclerView.addOnItemTouchListener(new PlansAdapter.RecyclerTouchListener(getApplicationContext(), recyclerView, new PlansAdapter.ClickListener() {
             @Override
             public void onClick(View view, int position) {
@@ -72,12 +70,12 @@ public class PlansActivity extends BaseActivity {
             }
         }));
 
-        // Click on add plan button listener
+
         add_plan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Click action
-                /*Intent intent = new Intent(PlansActivity.this, CreatePlanActivity.class);
+                /*Intent intent = new Intent(MyPlansActivity.this, CreatePlanActivity.class);
                 startActivity(intent);
                 finish();*/
             }
@@ -101,25 +99,58 @@ public class PlansActivity extends BaseActivity {
         }
 
         recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.addItemDecoration(new PlansActivity.GridSpacingItemDecoration(2, dpToPx(0), true));
+        recyclerView.addItemDecoration(new MyPlansActivity.GridSpacingItemDecoration(2, dpToPx(0), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
 
         add_plan = (FloatingActionButton) findViewById(R.id.fb_plans_add_plan);
-        add_plan.setVisibility(View.INVISIBLE);
+
     }
 
     private void preparePlans() {
+        fakeDbUsers fDbU = new fakeDbUsers();
+        ArrayList<String> plans_ids = fDbU.getMe().getPlans();
         fakeDbPlans fDbP = new fakeDbPlans();
 
         planList.clear();
-
+        
         if(planList != null ) {
-            planList.addAll(fDbP.getPlans());
+            planList.addAll(fDbP.getPlans(plans_ids));
             adapter.notifyDataSetChanged();
         } else {
             noPlans.setText("No disponemos de más planes por el momento");
         }
+
+    }
+
+    /**
+     * Converting dp to pixel
+     */
+    private int dpToPx(int dp) {
+        Resources r = getResources();
+        return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
+    }
+
+    public interface OnFragmentInteractionListener {
+        // TODO: Update argument type and name
+        void onFragmentInteraction(Uri uri);
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setTitle("Really Exit?")
+                .setMessage("Are you sure you want to exit?")
+                .setNegativeButton(android.R.string.no, null)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        MyPlansActivity.super.onBackPressed();
+                        finish();
+                        System.exit(0);
+                    }
+                }).create().show();
     }
 
     /**
@@ -160,33 +191,5 @@ public class PlansActivity extends BaseActivity {
         }
     }
 
-    /**
-     * Converting dp to pixel
-     */
-    private int dpToPx(int dp) {
-        Resources r = getResources();
-        return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
-    }
 
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
-
-
-    @Override
-    public void onBackPressed() {
-        new AlertDialog.Builder(this)
-                .setTitle("Really Exit?")
-                .setMessage("Are you sure you want to exit?")
-                .setNegativeButton(android.R.string.no, null)
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-
-                    public void onClick(DialogInterface arg0, int arg1) {
-                        PlansActivity.super.onBackPressed();
-                        finish();
-                        System.exit(0);
-                    }
-                }).create().show();
-    }
 }

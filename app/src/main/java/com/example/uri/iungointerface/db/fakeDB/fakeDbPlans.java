@@ -1,7 +1,6 @@
 package com.example.uri.iungointerface.db.fakeDB;
 
-import com.example.uri.iungointerface.db.Plan;
-import com.example.uri.iungointerface.db.User;
+import com.example.uri.iungointerface.db.classes.Plan;
 
 import java.util.ArrayList;
 

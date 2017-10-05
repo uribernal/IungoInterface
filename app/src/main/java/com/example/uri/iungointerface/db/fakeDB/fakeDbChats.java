@@ -1,8 +1,7 @@
 package com.example.uri.iungointerface.db.fakeDB;
 
-import com.example.uri.iungointerface.db.Chat;
-import com.example.uri.iungointerface.db.Message;
-import com.example.uri.iungointerface.db.Plan;
+import com.example.uri.iungointerface.db.classes.Chat;
+import com.example.uri.iungointerface.db.classes.Message;
 
 import java.util.ArrayList;
 import java.util.Arrays;

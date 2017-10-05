@@ -1,4 +1,4 @@
-package com.example.uri.iungointerface.db;
+package com.example.uri.iungointerface.db.classes;
 
 /**
  * Created by Uri on 06/01/2017.

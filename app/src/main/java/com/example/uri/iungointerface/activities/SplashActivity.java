@@ -12,6 +12,11 @@ import com.example.uri.iungointerface.activities.login.LoginActivity;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/***
+ * In this activity the app must look if the user is logged.
+ * If it's logged it redirects the user to the app
+ * Else it looks if is the first time the user uses the app.
+ */
 public class SplashActivity extends AppCompatActivity {
     private Timer timer;
 

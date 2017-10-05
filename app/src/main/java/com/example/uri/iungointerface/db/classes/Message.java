@@ -1,4 +1,4 @@
-package com.example.uri.iungointerface.db;
+package com.example.uri.iungointerface.db.classes;
 
 import com.example.uri.iungointerface.Values;
 import java.util.Calendar;
