@@ -33,8 +33,6 @@ import com.example.uri.iungointerface.db.fakeDB.fakeDbUsers;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 
 public class MyProfileActivity extends BaseActivity {
@@ -126,7 +124,7 @@ public class MyProfileActivity extends BaseActivity {
             friends.setText(Integer.toString(u.getFb_friends().size()));
         }
 
-        Glide.with(getApplicationContext()).load(u.getUrl()).into(profile);
+        Glide.with(getApplicationContext()).load(u.getPhoto_url()).into(profile);
         nombre.setText(u.getName());
 
         if (u.getAge() != null) {
@@ -147,7 +145,7 @@ public class MyProfileActivity extends BaseActivity {
     public void initControls() {
 
         planList = new ArrayList<Plan>();
-        fbid = getMyInfo().getFbid();
+        fbid = getMyInfo().getId();
         profile = (ImageView) findViewById(R.id.profile_iv_profile_image);
         nombre = (TextView) findViewById(R.id.profile_tv_name);
         edad = (TextView)findViewById(R.id.profile_tv_edad);

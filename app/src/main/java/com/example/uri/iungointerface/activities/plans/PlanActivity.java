@@ -56,6 +56,7 @@ public class PlanActivity extends BaseActivity {
     private boolean ya_estas_apuntado;
     private TabLayout tabLayout;
     private Plan plan;
+    private ArrayList<String> profiles_urls;
 
     private PlanActivity.OnFragmentInteractionListener mListener;
     // Container Activity must implement this interface
@@ -99,7 +100,7 @@ public class PlanActivity extends BaseActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String friend_id = plan.getUsers_fbid().get(which);
-                        if(getMyInfo().getFbid().equals(friend_id)){
+                        if(getMyInfo().getId().equals(friend_id)){
                             go_to_my_profile();
                         }else {
                             go_to_profile(friend_id);
@@ -165,7 +166,7 @@ public class PlanActivity extends BaseActivity {
 
         // Get info of the plan
         plan = getIntent().getExtras().getParcelable(PLAN);
-        ArrayList<String> profiles_urls = plan.getUsers_urls();
+        getParticipantsInfo();
 
         // Load texts and images
         plan_title.setText(plan.getName());
@@ -225,6 +226,12 @@ public class PlanActivity extends BaseActivity {
 
     }
 
+    public void getParticipantsInfo(){
+        profiles_urls = new ArrayList<>();
+        ArrayList<String> ids = plan.getUsers_fbid();
+        fakeDbUsers fDbU = new fakeDbUsers();
+        profiles_urls = fDbU.getPhotoUrls(ids);
+    }
 
     private void setupTabIcons() {
         tabLayout.getTabAt(0).setIcon(R.drawable.ic_info);

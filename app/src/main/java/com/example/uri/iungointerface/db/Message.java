@@ -1,7 +1,6 @@
 package com.example.uri.iungointerface.db;
 
 import com.example.uri.iungointerface.Values;
-
 import java.util.Calendar;
 
 
@@ -19,7 +18,7 @@ import java.util.Calendar;
 public class Message implements Values {
 
     int type;
-    String id, name, photoUrl, text, date, plan;
+    String id, name, text_msg, date, plan;
 
     public Message(String id, int type, String text, String plan){
         Calendar now = Calendar.getInstance();
@@ -27,12 +26,12 @@ public class Message implements Values {
         date = now.toString();
         this.id = id;
         if (type==TEXT_MESSAGE_LEFT || type==TEXT_MESSAGE_RIGHT){
-            this.text = text;
+            this.text_msg = text;
             this.plan = "";
         }else if (type== PLAN_MESSAGE){
             this.plan = plan;
         }else{
-            this.text = "";
+            this.text_msg = "";
             this.plan = "";
         }
     }
@@ -46,7 +45,7 @@ public class Message implements Values {
     }
 
     public void setText(String text) {
-        this.text = text;
+        this.text_msg = text;
     }
 
     public String getName() {
@@ -57,16 +56,9 @@ public class Message implements Values {
         this.name = name;
     }
 
-    public String getPhotoUrl() {
-        return photoUrl;
-    }
 
     public String getText() {
-        return text;
-    }
-
-    public void setPhotoUrl(String photoUrl) {
-        this.photoUrl = photoUrl;
+        return text_msg;
     }
 
     public int getType() {

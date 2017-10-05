@@ -12,8 +12,21 @@ import java.util.ArrayList;
 
 public class Chat {
 
-
     private String id;
+    private ArrayList<String> participants_ids;
+    private String last;
+    private String time;
+    private ArrayList<Message> messages;
+
+    public Chat(String id, ArrayList<String> participants_ids, String last, String time, ArrayList<Message> messages){
+
+        this.id = id;
+        this.participants_ids = participants_ids;
+        this. last = last;
+        this.time = time;
+        this.messages = messages;
+    }
+
 
     public String getId() {
         return id;
@@ -22,42 +35,18 @@ public class Chat {
     public void setId(String id) {
         this.id = id;
     }
-
-    private String user1;
-    private String user2;
-    private String last;
-    private String time;
-    private ArrayList<Message> messages;
-
-    public Chat(String id, String user1, String user2, String last, String time, ArrayList<Message> messages){
-
-        this.id = id;
-        this.user1 = user1;
-        this.user2 = user2;
-        this. last = last;
-        this.time = time;
-        this.messages = messages;
-    }
-
     public ArrayList<Message> getMessages(){
         return this.messages;
     }
 
-    public String getUser1() {
-        return user1;
+    public ArrayList<String> getParticipants() {
+        return participants_ids;
     }
 
-    public void setUser1(String id1) {
-        this.user1 = id1;
+    public void setParticipants(ArrayList<String> participants_ids) {
+        this.participants_ids = participants_ids;
     }
 
-    public String getUser2() {
-        return user2;
-    }
-
-    public void setUser2(String id2) {
-        this.user2 = id2;
-    }
 
     public String getLast() {
         return last;

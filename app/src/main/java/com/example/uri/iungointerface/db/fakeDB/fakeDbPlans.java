@@ -74,28 +74,28 @@ public class fakeDbPlans {
         planPics8.add("http://www.bubble-football.co.uk/s/img/emotionheader.jpg?1502803189.774px.375px");
         planPics8.add("https://images.gogroopie.com/i/v5_f93ex0f5w_2.jpg");
 
-        Plan a = new Plan("0", "Windsurf", "50", "Windsurf rules!", "c/Urquinaona 2", "c/Balmes 370", "3/3/2018", "10:00", 1, 1, 10, usersIds1, planPics1, fDbU.getUrls(usersIds1), null, null);
+        Plan a = new Plan("0", "Windsurf", "50", "Windsurf rules!", "c/Urquinaona 2", "c/Balmes 370", "3/3/2018", "10:00", 1, 1, 10, usersIds1, planPics1);
         plans.add(a);
 
-        a = new Plan("1", "Skate", "25", "Come to skate in Barcelona with your friends!", "c/Mitre 370", "c/Pelayo 2", "5/3/2018", "10:00", 2, 10, 2, usersIds2, planPics2, fDbU.getUrls(usersIds2), null, null);
+        a = new Plan("1", "Skate", "25", "Come to skate in Barcelona with your friends!", "c/Mitre 370", "c/Pelayo 2", "5/3/2018", "10:00", 2, 10, 2, usersIds2, planPics2);
         plans.add(a);
 
-        a = new Plan("2", "Kayak", "100", "Alfred marica", "Cuenca", "Cuenca2", "5/3/2018", "16:00", 3, 3, 3, usersIds3, planPics3, fDbU.getUrls(usersIds3), null, null);
+        a = new Plan("2", "Kayak", "100", "Alfred marica", "Cuenca", "Cuenca2", "5/3/2018", "16:00", 3, 3, 3, usersIds3, planPics3);
         plans.add(a);
 
-        a = new Plan("3", "Surfing", "120", "caca", "barcelona", "pl catalunya", "8/3/2018", "11:00", 6, 6, 2, usersIds4, planPics4, fDbU.getUrls(usersIds4), null, null);
+        a = new Plan("3", "Surfing", "120", "caca", "barcelona", "pl catalunya", "8/3/2018", "11:00", 6, 6, 2, usersIds4, planPics4);
         plans.add(a);
 
-        a = new Plan("4", "Escalada", "20", "escalada!!", "Masnou", "Ocata", "12/3/2018", "9:00", 0, 2, 1, usersIds5, planPics5, fDbU.getUrls(usersIds5), null, null);
+        a = new Plan("4", "Climbing", "20", "escalada!!", "Masnou", "Ocata", "12/3/2018", "9:00", 0, 2, 1, usersIds5, planPics5);
         plans.add(a);
 
-        a = new Plan("5", "Sushi classes", "20", "cooking sushi!!", "Masnou", "Ocata", "12/3/2018", "9:00", 0, 2, 1, usersIds5, planPics6, fDbU.getUrls(usersIds5), null, null);
+        a = new Plan("5", "Sushi classes", "20", "cooking sushi!!", "Masnou", "Ocata", "12/3/2018", "9:00", 0, 2, 1, usersIds5, planPics6);
         plans.add(a);
 
-        a = new Plan("6", "Yoga", "20", "yoga!!", "Masnou", "Ocata", "12/3/2018", "9:00", 0, 2, 1, usersIds5, planPics7, fDbU.getUrls(usersIds5), null, null);
+        a = new Plan("6", "Yoga", "20", "yoga!!", "Masnou", "Ocata", "12/3/2018", "9:00", 0, 2, 1, usersIds5, planPics7);
         plans.add(a);
 
-        a = new Plan("7", "Bubble football", "20", "enjoy!!", "Masnou", "Ocata", "12/3/2018", "9:00", 0, 2, 1, usersIds5, planPics8, fDbU.getUrls(usersIds5), null, null);
+        a = new Plan("7", "Bubble football", "20", "enjoy!!", "Masnou", "Ocata", "12/3/2018", "9:00", 0, 2, 1, usersIds5, planPics8);
         plans.add(a);
 
     }

@@ -17,12 +17,10 @@ public class Plan implements Parcelable {
     private String description;
     private String direction_activity;
     private String direction_meeting;
-
-
     private String date;
     private String hour;
     private int num_people, max_people, min_people;
-    private ArrayList<String> users_fbid, plan_photos, users_urls, users_names, users_years;
+    private ArrayList<String> users_fbid, plan_photos;
 
     public Plan(){
     }
@@ -51,9 +49,7 @@ public class Plan implements Parcelable {
         out.writeInt(min_people);
         out.writeSerializable(users_fbid);
         out.writeSerializable(plan_photos);
-        out.writeSerializable(users_urls);
-        out.writeSerializable(users_names);
-        out.writeSerializable(users_years);
+
 
     }
 
@@ -83,17 +79,13 @@ public class Plan implements Parcelable {
         min_people = in.readInt();
         users_fbid = (ArrayList<String>) in.readSerializable();
         plan_photos = (ArrayList<String>)  in.readSerializable();
-        users_urls = (ArrayList<String>)  in.readSerializable();
-        users_names = (ArrayList<String>)  in.readSerializable();
-        users_years = (ArrayList<String>)  in.readSerializable();
+
 
     }
 
     public Plan(String id, String name, String price, String description, String direction_activity,
                 String direction_meeting, String date, String hour, int num_people, int max_people,
-                int min_people, ArrayList<String> users_fbid, ArrayList<String> plan_photos,
-                ArrayList<String> users_urls, ArrayList<String> users_names,
-                ArrayList<String> users_years) {
+                int min_people, ArrayList<String> users_fbid, ArrayList<String> plan_photos) {
 
         this.id = id;
         this.name = name;
@@ -108,9 +100,7 @@ public class Plan implements Parcelable {
         this.min_people = min_people;
         this.users_fbid = users_fbid;
         this.plan_photos = plan_photos;
-        this.users_urls = users_urls;
-        this.users_names = users_names;
-        this.users_years = users_years;
+
     }
 
 
@@ -201,31 +191,7 @@ public class Plan implements Parcelable {
     public void setPlan_photos(ArrayList<String> plan_photos) {
         this.plan_photos = plan_photos;
     }
-    public void setUsers_urls(ArrayList<String> users_urls) {
-        this.users_urls = users_urls;
-    }
 
-    public ArrayList<String> getUsers_urls() {
-        return users_urls;
-    }
-
-    public void setUsers_names(ArrayList<String> users_names) {
-        this.users_names = users_names;
-    }
-
-    public ArrayList<String> getUsers_names() {
-
-        return users_names;
-    }
-
-    public void setUsers_years(ArrayList<String> users_years) {
-        this.users_years = users_years;
-    }
-
-    public ArrayList<String> getUsers_years() {
-
-        return users_years;
-    }
 
     public String getDate() {
         return date;

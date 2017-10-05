@@ -240,7 +240,7 @@ public class BaseActivity extends AppCompatActivity implements Values, Navigatio
 
         tv_name.setText(me.getName());
         tv_age.setText(me.getAge() + " years");
-        Glide.with(getApplicationContext()).load(me.getUrl()).into(profileButton);
+        Glide.with(getApplicationContext()).load(me.getPhoto_url()).into(profileButton);
     }
 
     // Get the information of the current user

@@ -1,11 +1,8 @@
 package com.example.uri.iungointerface.db.fakeDB;
 
-import com.example.uri.iungointerface.db.Plan;
 import com.example.uri.iungointerface.db.User;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * Created by Uri on 20/09/2017.
@@ -23,11 +20,11 @@ public class fakeDbUsers {
 
     private void createMe() {
         me = new User();
-        this.me.setFbid("0");
+        this.me.setId("0");
         this.me.setName("Test User 0");
         this.me.setAge("22");
         this.me.setEmail("juanpalomo@gmail.com");
-        this.me.setUrl("https://pickaface.net/assets/images/slides/slide2.png");
+        this.me.setPhoto_url("https://pickaface.net/assets/images/slides/slide2.png");
         this.me.setGender("male");
         ArrayList<String> friends = new ArrayList<>();
         friends.add("1");
@@ -48,11 +45,11 @@ public class fakeDbUsers {
         users = new ArrayList<User>();
         User u = new User();
 
-        u.setFbid("1");
+        u.setId("1");
         u.setName("Test user 1");
         u.setAge("50");
         u.setEmail("testuser1@gmail.com");
-        u.setUrl("https://pickaface.net/assets/images/slides/slide4.png");
+        u.setPhoto_url("https://pickaface.net/assets/images/slides/slide4.png");
         u.setGender("male");
         ArrayList<String> friends = new ArrayList<>();
         friends.add("0");
@@ -67,11 +64,11 @@ public class fakeDbUsers {
         users.add(u);
 
         u = new User();
-        u.setFbid("2");
+        u.setId("2");
         u.setName("Test user 2");
         u.setAge("50");
         u.setEmail("testuser2@gmail.com");
-        u.setUrl("http://www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-ginger-guy.png");
+        u.setPhoto_url("http://www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-ginger-guy.png");
         u.setGender("male");
         friends = new ArrayList<>();
         friends.add("0");
@@ -84,11 +81,11 @@ public class fakeDbUsers {
         users.add(u);
 
         u = new User();
-        u.setFbid("3");
+        u.setId("3");
         u.setName("Test user 3");
         u.setAge("50");
         u.setEmail("testuser3@gmail.com");
-        u.setUrl("https://www.tm-town.com/assets/default_female600x600-3702af30bd630e7b0fa62af75cd2e67c.png");
+        u.setPhoto_url("https://www.tm-town.com/assets/default_female600x600-3702af30bd630e7b0fa62af75cd2e67c.png");
         u.setGender("female");
         friends = new ArrayList<>();
         friends.add("0");
@@ -101,11 +98,11 @@ public class fakeDbUsers {
         users.add(u);
 
         u = new User();
-        u.setFbid("4");
+        u.setId("4");
         u.setName("Test user 4");
         u.setAge("50");
         u.setEmail("testuser4@gmail.com");
-        u.setUrl("https://i.pinimg.com/736x/7f/79/6d/7f796d57218d9cd81a92d9e6e8e51ce4--free-avatars-online-profile.jpg");
+        u.setPhoto_url("https://i.pinimg.com/736x/7f/79/6d/7f796d57218d9cd81a92d9e6e8e51ce4--free-avatars-online-profile.jpg");
         u.setGender("female");
         friends = new ArrayList<>();
         friends.add("0");
@@ -117,11 +114,11 @@ public class fakeDbUsers {
         users.add(u);
 
         u = new User();
-        u.setFbid("5");
+        u.setId("5");
         u.setName("Test user 5");
         u.setAge("10");
         u.setEmail("testuser5@gmail.com");
-        u.setUrl("https://cdn0.iconfinder.com/data/icons/user-pictures/100/matureman1-512.png");
+        u.setPhoto_url("https://cdn0.iconfinder.com/data/icons/user-pictures/100/matureman1-512.png");
         u.setGender("male");
         friends = new ArrayList<>();
         friends.add("4");
@@ -166,10 +163,10 @@ public class fakeDbUsers {
         return u;
     }
 
-    public ArrayList<String> getUrls(ArrayList<String> ids){
+    public ArrayList<String> getPhotoUrls(ArrayList<String> ids){
         ArrayList<String> urls = new ArrayList<String>();
         for (String id: ids){
-            urls.add(getUser(id).getUrl());
+            urls.add(getUser(id).getPhoto_url());
         }
         return urls;
 

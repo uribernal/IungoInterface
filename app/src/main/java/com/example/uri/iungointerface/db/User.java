@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class User implements Parcelable {
 
 
-    String fbid, name, email, url, age, gender;
+    String id, name, email, photo_url, age, gender;
     boolean datos;
     ArrayList<String> fb_friends, chats, plans;
     ArrayList<Boolean> preferences;
@@ -31,10 +31,10 @@ public class User implements Parcelable {
     // write your object's data to the passed-in Parcel
     @Override
     public void writeToParcel(Parcel out, int flags) {
-        out.writeString(fbid);
+        out.writeString(id);
         out.writeString(name);
         out.writeString(email);
-        out.writeString(url);
+        out.writeString(photo_url);
         out.writeString(age);
         out.writeString(gender);
         out.writeInt(datos ? 1 : 0);
@@ -58,10 +58,10 @@ public class User implements Parcelable {
 
     // example constructor that takes a Parcel and gives you an object populated with it's values
     private User(Parcel in) {
-        fbid = in.readString();
+        id = in.readString();
         name = in.readString();
         email = in.readString();
-        url = in.readString();
+        photo_url = in.readString();
         age = in.readString();
         gender = in.readString();
         datos = in.readInt() == 1;
@@ -73,8 +73,8 @@ public class User implements Parcelable {
     }
 
 
-    public String getFbid() {
-        return fbid;
+    public String getId() {
+        return id;
     }
 
     public String getName() {
@@ -85,8 +85,8 @@ public class User implements Parcelable {
         return email;
     }
 
-    public String getUrl() {
-        return url;
+    public String getPhoto_url() {
+        return photo_url;
     }
 
     public String getAge() {
@@ -147,15 +147,15 @@ public class User implements Parcelable {
     public void setEmail(String email) {
         this.email = email;
     }
-    public void setUrl(String photo) {
-        this.url = photo;
+    public void setPhoto_url(String photo) {
+        this.photo_url = photo;
     }
     public void setAge(String age) {
         this.age = age;
     }
 
-    public void setFbid(String fbid) {
-        this.fbid = fbid;
+    public void setId(String id) {
+        this.id = id;
     }
     public void setPlans(ArrayList<String> plans) {
         this.plans = plans;

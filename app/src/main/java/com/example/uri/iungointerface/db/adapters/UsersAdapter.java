@@ -54,7 +54,7 @@ public class UsersAdapter extends ArrayAdapter<User> {
         }
 
         User user = users.get(position);
-        Glide.with(myContext).load(user.getUrl()).into(holder.profile_picture);
+        Glide.with(myContext).load(user.getPhoto_url()).into(holder.profile_picture);
         //holder.profile_picture.setImageBitmap(amigo.profile_image);
         holder.name.setText(user.getName());
         if(chat) {

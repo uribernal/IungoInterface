@@ -8,7 +8,6 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,7 +18,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.GlideBitmapDrawable;
@@ -101,7 +99,7 @@ public class ProfileActivity extends BaseActivity {
                     builderSingle.setAdapter(adapter, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            go_to_profile(common_friends.get(which).getFbid());
+                            go_to_profile(common_friends.get(which).getId());
                         }
 
                     });
@@ -131,13 +129,13 @@ public class ProfileActivity extends BaseActivity {
                 //Go to chat
                 String chat_id;
                 fakeDbChats fDbC = new fakeDbChats();
-                Chat c = fDbC.getChatBetweenUsers(getMyInfo().getFbid(), friend.getFbid());
+                Chat c = fDbC.getChatBetweenUsers(getMyInfo().getId(), friend.getId());
                 if (c == null){
                     chat_id = "";
                 }else{
                     chat_id = c.getId();
                 }
-                go_to_chat_activity(friend.getFbid(), chat_id);
+                go_to_chat_activity(friend.getId(), chat_id);
             }
         });
         recyclerView.addOnItemTouchListener(new PlansAdapter.RecyclerTouchListener(getApplicationContext(), recyclerView, new PlansAdapter.ClickListener() {
@@ -214,7 +212,7 @@ public class ProfileActivity extends BaseActivity {
 
     private void setData() {
 
-        Glide.with(getApplicationContext()).load(friend.getUrl()).into(profile);
+        Glide.with(getApplicationContext()).load(friend.getPhoto_url()).into(profile);
         nombre.setText(friend.getName());
 
         if (friend.getAge() != null) {

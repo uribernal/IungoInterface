@@ -2,15 +2,12 @@ package com.example.uri.iungointerface.activities.chat;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 
 import com.example.uri.iungointerface.R;
 import com.example.uri.iungointerface.Values;
@@ -53,9 +50,9 @@ public class ChatActivity extends BaseActivity implements Values {
         listView = (ListView) findViewById(R.id.msgview);
         chatText = (EditText) findViewById(R.id.msg);
         if (chat_id != null && !chat_id.equals("")) {
-            messagesAdapter = new MessagesAdapter(getApplicationContext(), R.layout.item_message_left, me.getFbid(), me.getName(), me.getUrl(), friend.getName(), friend.getUrl(), chat.getMessages());
+            messagesAdapter = new MessagesAdapter(getApplicationContext(), R.layout.item_message_left, me.getId(), me.getName(), me.getPhoto_url(), friend.getName(), friend.getPhoto_url(), chat.getMessages());
         }else{
-            messagesAdapter = new MessagesAdapter(getApplicationContext(), R.layout.item_message_left, me.getFbid(), me.getName(), me.getUrl(), friend.getName(), friend.getUrl(), null);
+            messagesAdapter = new MessagesAdapter(getApplicationContext(), R.layout.item_message_left, me.getId(), me.getName(), me.getPhoto_url(), friend.getName(), friend.getPhoto_url(), null);
         }
 
         // If no messages ... display no messages, until.. progessBar load

@@ -57,7 +57,7 @@ public class ChatAdapter extends ArrayAdapter<Chat> {
 
         Chat chat = myChats.get(position);
         User user = users.get(position);
-        Glide.with(myContext).load(user.getUrl()).into(holder.profile_picture);
+        Glide.with(myContext).load(user.getPhoto_url()).into(holder.profile_picture);
         holder.name.setText(user.getName());
         holder.message.setText(chat.getLast());
         holder.hour.setText(chat.getTime());

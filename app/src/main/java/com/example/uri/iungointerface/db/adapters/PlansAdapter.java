@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.uri.iungointerface.R;
 import com.example.uri.iungointerface.db.Plan;
+import com.example.uri.iungointerface.db.fakeDB.fakeDbUsers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,7 @@ public class PlansAdapter extends RecyclerView.Adapter<PlansAdapter.MyViewHolder
 
     private Context mContext;
     private List<Plan> planList;
+    private ArrayList<String> urls;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView title, ocupacion_plan, num_users;
@@ -69,7 +71,8 @@ public class PlansAdapter extends RecyclerView.Adapter<PlansAdapter.MyViewHolder
             holder.num_users.setText("");
         }
         holder.ocupacion_plan.setText(Integer.toString(plan.getNum_people())+"/"+plan.getMax_people());
-        ArrayList<String> urls = plan.getUsers_urls();
+        getParticipantsInfo(plan);
+
         if(urls == null){
             holder.num_users.setText("");
             Glide.with(mContext).load("").into(holder.profile1);
@@ -98,6 +101,13 @@ public class PlansAdapter extends RecyclerView.Adapter<PlansAdapter.MyViewHolder
         }
 
 
+    }
+
+    public void getParticipantsInfo(Plan plan){
+        urls = new ArrayList<>();
+        ArrayList<String> ids = plan.getUsers_fbid();
+        fakeDbUsers fDbU = new fakeDbUsers();
+        urls = fDbU.getPhotoUrls(ids);
     }
 
     @Override
