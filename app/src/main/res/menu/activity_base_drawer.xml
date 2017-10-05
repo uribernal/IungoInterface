@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_plans"
+            android:icon="@drawable/ic_adn"
+            android:title="Planes" />
+        <item
+            android:id="@+id/nav_myplans"
+            android:icon="@drawable/ic_handshake"
+            android:title="Mis Planes" />
+        <item
+            android:id="@+id/nav_friends"
+            android:icon="@drawable/ic_friends"
+            android:title="Amistades" />
+
+    </group>
+
+    <item android:title="Social Networks">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_socialnetworks"
+                android:title="About Us" />
+
+        </menu>
+    </item>
+    <item android:title="Tools">
+        <menu>
+            <item
+                android:id="@+id/nav_settings"
+                android:icon="@drawable/ic_settings"
+                android:title="Settings" />
+
+        </menu>
+    </item>
+</menu>
