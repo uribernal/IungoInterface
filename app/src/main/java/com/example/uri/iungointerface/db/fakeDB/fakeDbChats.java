@@ -1,5 +1,6 @@
 package com.example.uri.iungointerface.db.fakeDB;
 
+import com.example.uri.iungointerface.Values;
 import com.example.uri.iungointerface.db.classes.Chat;
 import com.example.uri.iungointerface.db.classes.Message;
 
@@ -10,7 +11,7 @@ import java.util.Arrays;
  * Created by Uri on 26/09/2017.
  */
 
-public class fakeDbChats {
+public class fakeDbChats implements Values{
 
     private ArrayList<Chat> chats;
 
@@ -21,21 +22,28 @@ public class fakeDbChats {
     private void createChats() {
         chats = new ArrayList<Chat>();
         ArrayList<Message> messages = new ArrayList<>();
-        messages.add(new Message("0", 1, "hola", null));
-        messages.add(new Message("1", 1, "hola!", null));
-        messages.add(new Message("1", 1, "que tal?!", null));
+        messages.add(new Message("0", TEXT_MESSAGE_LEFT, "hola", null));
+        messages.add(new Message("1", TEXT_MESSAGE_RIGHT, "hola!", null));
+        messages.add(new Message("1", TEXT_MESSAGE_RIGHT, "que tal?!", null));
+
         chats.add(new Chat("0", new ArrayList<>(Arrays.asList("0", "1")), "que tal?", "12:00", messages));
 
         messages = new ArrayList<>();
-        messages.add(new Message("2", 1, "Hi", null));
-        messages.add(new Message("0", 1, "Hi!", null));
-        messages.add(new Message("0", 1, "How r u?", null));
-        chats.add(new Chat("1", new ArrayList<>(Arrays.asList("0", "2")), "How r u?", "13:00", messages));
+        messages.add(new Message("2", TEXT_MESSAGE_RIGHT, "Hi", null));
+        messages.add(new Message("0", TEXT_MESSAGE_LEFT, "Hi!", null));
+        messages.add(new Message("0", TEXT_MESSAGE_LEFT, "How r u?", null));
+        chats.add(new Chat("1", new ArrayList<>(Arrays.asList("0", "2")), "How r u?", "13:00", messages));messages = new ArrayList<>();
 
         messages = new ArrayList<>();
-        messages.add(new Message("2", 1, "2", null));
-        messages.add(new Message("1", 1, "1", null));
-        chats.add(new Chat("2", new ArrayList<>(Arrays.asList("1", "2")), "1", "14:00", messages));
+        messages.add(new Message("3", PLAN_MESSAGE, null, "1"));
+        messages.add(new Message("0", TEXT_MESSAGE_LEFT, "I can't go, but join my plan!", null));
+        messages.add(new Message("0", PLAN_MESSAGE, null, "2"));
+        chats.add(new Chat("2", new ArrayList<>(Arrays.asList("0", "3")), "Plan invitation", "13:00", messages));
+
+        messages = new ArrayList<>();
+        messages.add(new Message("2", TEXT_MESSAGE_RIGHT, "2", null));
+        messages.add(new Message("1", TEXT_MESSAGE_RIGHT, "1", null));
+        chats.add(new Chat("3", new ArrayList<>(Arrays.asList("1", "2")), "1", "14:00", messages));
     }
 
     public ArrayList<Chat> getChatWithUser(String id){

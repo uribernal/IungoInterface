@@ -1,10 +1,12 @@
 package com.example.uri.iungointerface.activities.chat;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -12,11 +14,14 @@ import android.widget.ListView;
 import com.example.uri.iungointerface.R;
 import com.example.uri.iungointerface.Values;
 import com.example.uri.iungointerface.activities.BaseActivity;
+import com.example.uri.iungointerface.activities.plans.PlanActivity;
 import com.example.uri.iungointerface.db.classes.Chat;
 import com.example.uri.iungointerface.db.classes.Message;
+import com.example.uri.iungointerface.db.classes.Plan;
 import com.example.uri.iungointerface.db.classes.User;
 import com.example.uri.iungointerface.db.adapters.MessagesAdapter;
 import com.example.uri.iungointerface.db.fakeDB.fakeDbChats;
+import com.example.uri.iungointerface.db.fakeDB.fakeDbPlans;
 import com.example.uri.iungointerface.db.fakeDB.fakeDbUsers;
 
 public class ChatActivity extends BaseActivity implements Values {
@@ -69,6 +74,24 @@ public class ChatActivity extends BaseActivity implements Values {
                 chatText.setText("");
             }
         });
+
+        // On click go to Plan Invitation
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+                if (messagesAdapter.getItem(position).getType() == Values.PLAN_MESSAGE) {
+                    Intent intent = new Intent(getApplicationContext(), PlanActivity.class);
+                    intent.putExtra(PLAN, getPlan(messagesAdapter.getItem(position).getPlan()));
+                    startActivity(intent);
+                }
+            }
+        });
+    }
+
+    private Plan getPlan(String plan) {
+        fakeDbPlans fDbP = new fakeDbPlans();
+        return fDbP.getPlan(plan);
     }
 
     private void sendChatMessage() {

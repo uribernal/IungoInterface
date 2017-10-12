@@ -31,7 +31,7 @@ public class Message implements Values {
         this.id = id;
         if (type==TEXT_MESSAGE_LEFT || type==TEXT_MESSAGE_RIGHT){
             this.text_msg = text;
-            this.plan = "";
+            this.plan = plan;
         }else if (type== PLAN_MESSAGE){
             this.plan = plan;
         }else{

@@ -3,89 +3,78 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="horizontal">
 
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:weightSum="1">
+        android:orientation="horizontal">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/messengerImageView"
             android:layout_width="36dp"
             android:layout_height="36dp"
-            android:src="@drawable/ic_account_circle_black_36dp"
-            android:layout_weight="0.07" />
+            android:src="@drawable/ic_account_circle_black_36dp" />
 
-        <LinearLayout
-            android:layout_width="134dp"
-            android:layout_height="87dp"
+    </LinearLayout>
+
+
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_weight="0.83"
             android:gravity="center_vertical"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="0dp"
                 android:gravity="center_vertical"
-                android:orientation="vertical"
-                android:weightSum="1">
+                android:orientation="vertical">
 
                 <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="106dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:id="@+id/iv_plan_image"
+                    android:layout_width="150dp"
+                    android:layout_height="80dp"
                     app:srcCompat="@drawable/beach2" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="134dp"
-                android:layout_height="87dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_weight="0.94"
                 android:gravity="right"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/messageTextView"
-                    android:layout_width="wrap_content"
+                    android:layout_width="90dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
+                    android:text="Join this plan"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
 
-                <TextView
-                    android:id="@+id/messengerTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
             </LinearLayout>
         </LinearLayout>
 
 
-        <LinearLayout
-            android:layout_width="31dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_weight="0.00"
-            android:gravity="center_vertical"
-            android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/messengerTextView_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="0"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
-        </LinearLayout>
+        <TextView
+            android:id="@+id/messengerTextView_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="12:00"
+            android:gravity="center"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
     </LinearLayout>
 
-
 </LinearLayout>
+
+
