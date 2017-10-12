@@ -207,7 +207,6 @@ public class BaseActivity extends AppCompatActivity implements Values, Navigatio
         intent = set_me_in_intent(intent);
         intent = set_friend_in_intent(intent, friend_id);
         startActivity(intent);
-        //finish();
     }
 
     public void go_to_friends_activity() {

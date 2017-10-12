@@ -125,7 +125,34 @@ public class PlanActivity extends BaseActivity {
         get_this_plan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
+                if(ya_estas_apuntado){
+                    ya_estas_apuntado = false;
+                    get_this_plan.setText("JOIN THE PLAN");
+                    if (plan.getUsers_fbid().get(0).equals(getMyInfo().getId())){
+                        profiles_urls.set(0, "");
+                        Glide.with(getApplicationContext()).load("").into(profile_photo1);
+                    }else if (plan.getUsers_fbid().get(1).equals(getMyInfo().getId())){
+                        Glide.with(getApplicationContext()).load("").into(profile_photo2);
+                        profiles_urls.set(1, "");
+                    }else if (plan.getUsers_fbid().get(2).equals(getMyInfo().getId())){
+                        Glide.with(getApplicationContext()).load("").into(profile_photo3);
+                        profiles_urls.set(2, "");
+                    }
 
+                }else{
+                    ya_estas_apuntado = true;
+                    get_this_plan.setText("UNSUBSCRIBE");
+                    plan.getUsers_fbid().remove(getMyInfo().getId());
+                    plan.setUsers_fbid(plan.getUsers_fbid());
+                    if (profiles_urls.get(0).equals("")){
+                        Glide.with(getApplicationContext()).load(getMyInfo().getPhoto_url()).into(profile_photo1);
+                    }else if (profiles_urls.get(0).equals("")){
+                        Glide.with(getApplicationContext()).load(getMyInfo().getPhoto_url()).into(profile_photo2);
+                    }else if (profiles_urls.get(0).equals("")){
+                        Glide.with(getApplicationContext()).load(getMyInfo().getPhoto_url()).into(profile_photo3);
+                    }
+
+                }
 
             }
         });
@@ -224,7 +251,23 @@ public class PlanActivity extends BaseActivity {
         viewPager.setAdapter(myViewPagerAdapter);
         viewPager.addOnPageChangeListener(viewPagerPageChangeListener);
 
+        //Check if user has joined the plan
+        ya_estas_apuntado = joinedPlan();
+        if(ya_estas_apuntado){
+            get_this_plan.setText("UNSUBSCRIBE");
+        }else{
+            get_this_plan.setText("JOIN THE PLAN");
+        }
     }
+
+    public boolean joinedPlan(){
+        if (getMyInfo().getPlans().contains(plan.getId())){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 
     public void getParticipantsInfo(){
         profiles_urls = new ArrayList<>();

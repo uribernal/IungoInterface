@@ -113,7 +113,7 @@ public class MyPlansActivity extends BaseActivity {
         fakeDbPlans fDbP = new fakeDbPlans();
 
         planList.clear();
-        
+
         if(planList != null ) {
             planList.addAll(fDbP.getPlans(plans_ids));
             adapter.notifyDataSetChanged();

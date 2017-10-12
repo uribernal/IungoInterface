@@ -16,6 +16,7 @@ import android.preference.PreferenceManager;
 import android.preference.RingtonePreference;
 import android.text.TextUtils;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.uri.iungointerface.R;
 
@@ -29,6 +30,9 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
         // load settings fragment
         getFragmentManager().beginTransaction().replace(android.R.id.content, new MainPreferenceFragment()).commit();
+
+
+
     }
 
     public static class MainPreferenceFragment extends PreferenceFragment {
@@ -48,6 +52,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             myPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 public boolean onPreferenceClick(Preference preference) {
                     sendFeedback(getActivity());
+                    //Toast.makeText(SettingsActivity.this, "hidhd", Toast.LENGTH_SHORT).show();
                     return true;
                 }
             });

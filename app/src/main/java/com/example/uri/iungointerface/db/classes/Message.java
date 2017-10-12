@@ -1,6 +1,9 @@
 package com.example.uri.iungointerface.db.classes;
 
 import com.example.uri.iungointerface.Values;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 
@@ -21,9 +24,10 @@ public class Message implements Values {
     String id, name, text_msg, date, plan;
 
     public Message(String id, int type, String text, String plan){
-        Calendar now = Calendar.getInstance();
+        DateFormat df = new SimpleDateFormat("HH:mm");
+        Calendar calobj = Calendar.getInstance();
         this.type = type;
-        date = now.toString();
+        date = df.format(calobj.getTime()).toString();
         this.id = id;
         if (type==TEXT_MESSAGE_LEFT || type==TEXT_MESSAGE_RIGHT){
             this.text_msg = text;

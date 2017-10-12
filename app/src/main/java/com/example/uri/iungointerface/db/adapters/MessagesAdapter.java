@@ -80,7 +80,7 @@ public class MessagesAdapter extends ArrayAdapter<Message> implements Values {
             name.setText(friendName);
         }
         message.setText(chatMessageObj.getText());
-        hour.setText("12:00");
+        hour.setText(chatMessageObj.getDate().toString());
 
         return row;
     }

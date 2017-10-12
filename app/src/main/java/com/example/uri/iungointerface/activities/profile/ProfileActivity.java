@@ -8,13 +8,14 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageButton;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -42,8 +43,9 @@ public class ProfileActivity extends BaseActivity {
     private ArrayList<User> common_friends;
     private Bitmap[] profile_photos;
     private RecyclerView recyclerView;
-    private ImageButton bt_add_friend, bt_chat, bt_invite_plan;
-    private TextView tv_add_friend, tv_chat, tv_invite_plan;
+    private ImageView iv_add_friend, iv_invite_plan;
+    private RelativeLayout rl_add_friend, rl_invite_plan;
+    private TextView tv_add_friend, tv_invite_plan;
     private RelativeLayout rl_amigos_comun, rl_planes_apuntados;
     private PlansAdapter adapter;
     private TextView nombre, tv_edad, amigosComun;
@@ -123,21 +125,44 @@ public class ProfileActivity extends BaseActivity {
             }
         });
 
-        bt_chat.setOnClickListener(new View.OnClickListener() {
+        rl_add_friend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Go to chat
-                String chat_id;
-                fakeDbChats fDbC = new fakeDbChats();
-                Chat c = fDbC.getChatBetweenUsers(getMyInfo().getId(), friend.getId());
-                if (c == null){
-                    chat_id = "";
+                if (getMyInfo().getFb_friends().contains(friend.getId())){
+                    //Go to chat
+                    String chat_id;
+                    fakeDbChats fDbC = new fakeDbChats();
+                    Chat c = fDbC.getChatBetweenUsers(getMyInfo().getId(), friend.getId());
+                    if (c == null){
+                        chat_id = "";
+                    }else{
+                        chat_id = c.getId();
+                    }
+                    go_to_chat_activity(friend.getId(), chat_id);
+
                 }else{
-                    chat_id = c.getId();
+                    tv_add_friend.setText("Chat");
+                    iv_add_friend.setImageResource(R.drawable.ic_chat2);
+                    final Snackbar snackbar = Snackbar.make(getCurrentFocus(), "Friend request sent", Snackbar.LENGTH_LONG)
+                            .setAction("OK", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                }
+                            });
+                    snackbar.show();
                 }
-                go_to_chat_activity(friend.getId(), chat_id);
+
             }
         });
+
+        iv_invite_plan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+
         recyclerView.addOnItemTouchListener(new PlansAdapter.RecyclerTouchListener(getApplicationContext(), recyclerView, new PlansAdapter.ClickListener() {
             @Override
             public void onClick(View view, int position) {
@@ -171,12 +196,13 @@ public class ProfileActivity extends BaseActivity {
         rl_amigos_comun = (RelativeLayout) findViewById(R.id.rl_amigos_comun);
         tv_edad = (TextView) findViewById(R.id.profile_tv_edad);
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view_fotos_perfil);
-        bt_chat = (ImageButton) findViewById(R.id.ib_chat_profile);
-        bt_invite_plan = (ImageButton) findViewById(R.id.ib_invite_plan);
+        rl_invite_plan = (RelativeLayout) findViewById(R.id.rl_invite_plan);
         profile_photo = (ImageView) findViewById(R.id.profile_iv_profile_image);
         tv_add_friend = (TextView) findViewById(R.id.tv_add_friend);
-        bt_add_friend = (ImageButton) findViewById(R.id.ib_add_friend);
+        rl_add_friend = (RelativeLayout) findViewById(R.id.rl_add_friend);
         planList = new ArrayList<>();
+        iv_add_friend = (ImageView) findViewById(R.id.iv_add_friend);
+        iv_invite_plan = (ImageView) findViewById(R.id.iv_invite_plan);
 
         adapter = new PlansAdapter(getApplicationContext(), planList);
 
@@ -206,7 +232,6 @@ public class ProfileActivity extends BaseActivity {
         }else{
             amigosComun.setText("0");
             rl_amigos_comun.setClickable(false);
-
         }
     }
 
@@ -219,6 +244,16 @@ public class ProfileActivity extends BaseActivity {
             tv_edad.setText(friend.getAge() + " years");
         }
 
+        if (getMyInfo().getFb_friends().contains(friend.getId())){
+            tv_add_friend.setText("Chat");
+            iv_add_friend.setImageResource(R.drawable.ic_chat2);
+        }else{
+            tv_add_friend.setText("Add friend");
+            iv_add_friend.setImageResource(R.drawable.ic_add_friend);
+            tv_invite_plan.setText("");
+            iv_invite_plan.setImageResource(0);
+            rl_invite_plan.setClickable(false);
+        }
         preparePlans();
 
 

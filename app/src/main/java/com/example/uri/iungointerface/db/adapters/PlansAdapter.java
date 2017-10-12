@@ -64,13 +64,14 @@ public class PlansAdapter extends RecyclerView.Adapter<PlansAdapter.MyViewHolder
         holder.title.setText(plan.getName());
         if (plan.getNum_people()>3) {
             holder.num_users.setText("... and " + Integer.toString(plan.getNum_people() - 3) + " more");
+            holder.ocupacion_plan.setText(Integer.toString(plan.getNum_people())+"/"+plan.getMax_people());
         }else if(plan.getNum_people() == 0){
             holder.num_users.setText("Be the first to join!");
+            holder.ocupacion_plan.setText("");
 
         }else{
             holder.num_users.setText("");
         }
-        holder.ocupacion_plan.setText(Integer.toString(plan.getNum_people())+"/"+plan.getMax_people());
         getParticipantsInfo(plan);
 
         if(urls == null){
