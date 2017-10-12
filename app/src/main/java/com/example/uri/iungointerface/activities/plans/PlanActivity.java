@@ -30,9 +30,11 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.uri.iungointerface.R;
 import com.example.uri.iungointerface.activities.BaseActivity;
+import com.example.uri.iungointerface.db.classes.Chat;
 import com.example.uri.iungointerface.db.classes.Plan;
 import com.example.uri.iungointerface.db.classes.User;
 import com.example.uri.iungointerface.db.adapters.UsersAdapter;
+import com.example.uri.iungointerface.db.fakeDB.fakeDbChats;
 import com.example.uri.iungointerface.db.fakeDB.fakeDbUsers;
 import com.example.uri.iungointerface.fragments.plans.GroupChatFragment;
 import com.example.uri.iungointerface.fragments.plans.MapsFragment;
@@ -79,7 +81,7 @@ public class PlanActivity extends BaseActivity {
         plan_number_of_users.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Create Alert dialog to show the users who boucht the plan
+                // Create Alert dialog to show the users who bought the plan
                 AlertDialog.Builder builderSingle = new AlertDialog.Builder(PlanActivity.this);
                 builderSingle.setIcon(R.drawable.ic_people_outline_black_24dp);
                 builderSingle.setTitle("People in the activity:");
@@ -115,7 +117,41 @@ public class PlanActivity extends BaseActivity {
         invite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Create Alert dialog to show your friends
+                AlertDialog.Builder builderSingle = new AlertDialog.Builder(PlanActivity.this);
+                builderSingle.setIcon(R.drawable.ic_people_outline_black_24dp);
+                builderSingle.setTitle("Invite one of your friends:");
 
+                fakeDbUsers dbUsers = new fakeDbUsers();
+
+                final ArrayList<User> friends = dbUsers.getUsers(getMyInfo().getFb_friends());
+
+                final UsersAdapter adapter = new UsersAdapter(getApplicationContext(), R.layout.item_user, friends, false);
+                builderSingle.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+
+                builderSingle.setAdapter(adapter, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //Add plan message to conversation and go to chat
+                        String chat_id;
+                        fakeDbChats fDbC = new fakeDbChats();
+                        Chat c = fDbC.getChatBetweenUsers(getMyInfo().getId(), friends.get(which).getId());
+                        if (c == null){
+                            chat_id = "";
+                        }else{
+                            chat_id = c.getId();
+                        }
+                        go_to_chat_activity(friends.get(which).getId(), chat_id);
+                    }
+
+
+                });
+                builderSingle.show();
             }
 
 
