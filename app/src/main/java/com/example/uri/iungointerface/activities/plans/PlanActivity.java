@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -137,16 +138,28 @@ public class PlanActivity extends BaseActivity {
                 builderSingle.setAdapter(adapter, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        //Add plan message to conversation and go to chat
-                        String chat_id;
-                        fakeDbChats fDbC = new fakeDbChats();
-                        Chat c = fDbC.getChatBetweenUsers(getMyInfo().getId(), friends.get(which).getId());
-                        if (c == null){
-                            chat_id = "";
+                        //Check if user is in the plan
+                        if(friends.get(which).getPlans().contains(plan.getId())){
+                            final Snackbar snackbar = Snackbar.make(getCurrentFocus(), "This friend is already in the plan", Snackbar.LENGTH_LONG)
+                                    .setAction("OK", new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                        }
+                                    });
+                            snackbar.show();
                         }else{
-                            chat_id = c.getId();
+
+                            //Add plan message to conversation and go to chat
+                            String chat_id;
+                            fakeDbChats fDbC = new fakeDbChats();
+                            Chat c = fDbC.getChatBetweenUsers(getMyInfo().getId(), friends.get(which).getId());
+                            if (c == null){
+                                chat_id = "";
+                            }else{
+                                chat_id = c.getId();
+                            }
+                            go_to_chat_activity(friends.get(which).getId(), chat_id);
                         }
-                        go_to_chat_activity(friends.get(which).getId(), chat_id);
                     }
 
 
@@ -229,7 +242,7 @@ public class PlanActivity extends BaseActivity {
 
         // Get info of the plan
         plan = getIntent().getExtras().getParcelable(PLAN);
-        getParticipantsInfo();
+        setParticipantsInfo();
 
         // Load texts and images
         plan_title.setText(plan.getName());
@@ -305,7 +318,7 @@ public class PlanActivity extends BaseActivity {
     }
 
 
-    public void getParticipantsInfo(){
+    public void setParticipantsInfo(){
         profiles_urls = new ArrayList<>();
         ArrayList<String> ids = plan.getUsers_fbid();
         fakeDbUsers fDbU = new fakeDbUsers();

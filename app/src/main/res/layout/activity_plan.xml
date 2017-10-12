@@ -168,7 +168,7 @@
                         android:layout_height="37dp"
                         android:layout_gravity="center|right"
                         android:background="@color/transparent"
-                        android:layout_marginLeft="150dp"
+                        android:layout_marginLeft="100dp"
                         android:scaleType="fitXY"
                         android:src="@drawable/ic_invite" />
 
