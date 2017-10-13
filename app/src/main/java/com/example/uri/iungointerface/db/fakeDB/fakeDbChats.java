@@ -32,7 +32,7 @@ public class fakeDbChats implements Values{
         messages.add(new Message("2", TEXT_MESSAGE_RIGHT, "Hi", null));
         messages.add(new Message("0", TEXT_MESSAGE_LEFT, "Hi!", null));
         messages.add(new Message("0", TEXT_MESSAGE_LEFT, "How r u?", null));
-        chats.add(new Chat("1", new ArrayList<>(Arrays.asList("0", "2")), "How r u?", "13:00", messages));messages = new ArrayList<>();
+        chats.add(new Chat("1", new ArrayList<>(Arrays.asList("0", "2")), "How r u?", "13:00", messages));
 
         messages = new ArrayList<>();
         messages.add(new Message("3", PLAN_MESSAGE, null, "1"));
@@ -44,13 +44,14 @@ public class fakeDbChats implements Values{
         messages.add(new Message("2", TEXT_MESSAGE_RIGHT, "2", null));
         messages.add(new Message("1", TEXT_MESSAGE_RIGHT, "1", null));
         chats.add(new Chat("3", new ArrayList<>(Arrays.asList("1", "2")), "1", "14:00", messages));
+
     }
 
     public ArrayList<Chat> getChatWithUser(String id){
         ArrayList<Chat> c = new ArrayList<>();
         for (Chat chat:chats){
             for (String id_user: chat.getParticipants())
-            if (id_user.equals(id) || id_user.equals(id)){
+            if ((id_user.equals(id) || id_user.equals(id))){
                 c.add(chat);
             }
         }
@@ -91,4 +92,6 @@ public class fakeDbChats implements Values{
 
         return chats.get(Integer.parseInt(id));
     }
+
+
 }

@@ -68,4 +68,15 @@ public class Chat {
         this.messages = messages;
     }
 
+    public ArrayList<String> getParticipants_ids() {
+        return participants_ids;
+    }
+
+    public void setParticipants_ids(ArrayList<String> participants_ids) {
+        this.participants_ids = participants_ids;
+    }
+
+
+
+
 }

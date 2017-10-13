@@ -13,7 +13,9 @@ import com.bumptech.glide.Glide;
 import com.example.uri.iungointerface.R;
 import com.example.uri.iungointerface.Values;
 import com.example.uri.iungointerface.db.classes.Message;
+import com.example.uri.iungointerface.db.fakeDB.fakeDbGroupChats;
 import com.example.uri.iungointerface.db.fakeDB.fakeDbPlans;
+import com.example.uri.iungointerface.db.fakeDB.fakeDbUsers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +26,8 @@ public class MessagesAdapter extends ArrayAdapter<Message> implements Values {
     private ImageView profile_picture, iv_plan_image;
     private List<Message> chatMessageList = new ArrayList<Message>();
     private Context context;
-    private String myId, myName, myUrl, friendName, friendUrl;
+    private String myId, myName, myUrl, friendName, friendUrl, plan;
+    private boolean groupChat;
 
     @Override
     public void add(Message object) {
@@ -35,7 +38,7 @@ public class MessagesAdapter extends ArrayAdapter<Message> implements Values {
         super.add(object);
     }
 
-    public MessagesAdapter(Context context, int textViewResourceId, String myId, String myName, String myUrl, String friendName, String friendUrl, ArrayList<Message> messages) {
+    public MessagesAdapter(Context context, int textViewResourceId, String myId, String myName, String myUrl, String friendName, String friendUrl, ArrayList<Message> messages, boolean groupChat) {
         super(context, textViewResourceId);
         this.context = context;
         this.myId = myId;
@@ -44,6 +47,7 @@ public class MessagesAdapter extends ArrayAdapter<Message> implements Values {
         this.friendName = friendName;
         this.friendUrl = friendUrl;
         this.chatMessageList = messages;
+        this.groupChat = groupChat;
     }
 
 
@@ -64,6 +68,12 @@ public class MessagesAdapter extends ArrayAdapter<Message> implements Values {
         Message chatMessageObj = getItem(position);
         View row = convertView;
         LayoutInflater inflater = (LayoutInflater) this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        if(groupChat){
+            plan = friendUrl;
+            getUsersInfo(chatMessageObj);
+        }
+
         if(chatMessageObj.getType() == Values.PLAN_MESSAGE){
             row = inflater.inflate(R.layout.item_message_plan, parent, false);
             profile_picture = (ImageView) row.findViewById(R.id.messengerImageView);
@@ -101,6 +111,12 @@ public class MessagesAdapter extends ArrayAdapter<Message> implements Values {
             hour.setText(chatMessageObj.getDate().toString());
         }
         return row;
+    }
+
+    private void getUsersInfo(Message m) {
+        fakeDbUsers fDbU = new fakeDbUsers();
+        this.friendName = fDbU.getUser(m.getId()).getName();
+        this.friendUrl = fDbU.getUser(m.getId()).getPhoto_url();;
     }
 
     public String getPlanUrl(String id){

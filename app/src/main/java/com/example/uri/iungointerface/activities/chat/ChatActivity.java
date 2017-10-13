@@ -55,9 +55,9 @@ public class ChatActivity extends BaseActivity implements Values {
         listView = (ListView) findViewById(R.id.msgview);
         chatText = (EditText) findViewById(R.id.msg);
         if (chat_id != null && !chat_id.equals("")) {
-            messagesAdapter = new MessagesAdapter(getApplicationContext(), R.layout.item_message_left, me.getId(), me.getName(), me.getPhoto_url(), friend.getName(), friend.getPhoto_url(), chat.getMessages());
+            messagesAdapter = new MessagesAdapter(getApplicationContext(), R.layout.item_message_left, me.getId(), me.getName(), me.getPhoto_url(), friend.getName(), friend.getPhoto_url(), chat.getMessages(), false);
         }else{
-            messagesAdapter = new MessagesAdapter(getApplicationContext(), R.layout.item_message_left, me.getId(), me.getName(), me.getPhoto_url(), friend.getName(), friend.getPhoto_url(), null);
+            messagesAdapter = new MessagesAdapter(getApplicationContext(), R.layout.item_message_left, me.getId(), me.getName(), me.getPhoto_url(), friend.getName(), friend.getPhoto_url(), null, false);
         }
 
         // If no messages ... display no messages, until.. progessBar load
@@ -89,17 +89,8 @@ public class ChatActivity extends BaseActivity implements Values {
         });
     }
 
-    private Plan getPlan(String plan) {
-        fakeDbPlans fDbP = new fakeDbPlans();
-        return fDbP.getPlan(plan);
-    }
 
-    private void sendChatMessage() {
-        if (chatText.getText().toString().equals("")){
-            return;
-        }
-        messagesAdapter.add(new Message("0", Values.TEXT_MESSAGE_RIGHT, chatText.getText().toString(), null));
-    }
+
 
     private void prepareMessages(String chat_id, String friend_id) {
         fakeDbUsers fDbU = new fakeDbUsers();
@@ -109,9 +100,17 @@ public class ChatActivity extends BaseActivity implements Values {
         if (chat_id != null && !chat_id.equals("")) {
             chat = fDbC.getChat(chat_id);
         }
-
-
     }
 
+    private void sendChatMessage() {
+        if (chatText.getText().toString().equals("")){
+            return;
+        }
+        messagesAdapter.add(new Message("0", Values.TEXT_MESSAGE_RIGHT, chatText.getText().toString(), null));
+    }
 
+    private Plan getPlan(String plan) {
+        fakeDbPlans fDbP = new fakeDbPlans();
+        return fDbP.getPlan(plan);
+    }
 }
