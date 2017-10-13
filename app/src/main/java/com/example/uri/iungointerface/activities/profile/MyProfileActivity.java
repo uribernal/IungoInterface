@@ -17,12 +17,14 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.GlideBitmapDrawable;
 import com.example.uri.iungointerface.R;
 import com.example.uri.iungointerface.activities.BaseActivity;
+import com.example.uri.iungointerface.activities.plans.PlanActivity;
 import com.example.uri.iungointerface.db.classes.Plan;
 import com.example.uri.iungointerface.db.classes.User;
 import com.example.uri.iungointerface.db.adapters.PlansAdapter;
@@ -38,10 +40,9 @@ import java.util.List;
 public class MyProfileActivity extends BaseActivity {
 
     private RecyclerView recyclerView;
-    private ImageButton bt_settings;
     private PlansAdapter adapter;
     private ImageView profile_photo, profile;
-    private LinearLayout amigos;
+    private RelativeLayout amigos;
     private TextView edad, friends, nombre, planes_apuntados;
     private ArrayList<User> my_friends;
     private String fbid;
@@ -64,13 +65,6 @@ public class MyProfileActivity extends BaseActivity {
         // Set Names and Photos from friends
         setFriendsInfo();
 
-        bt_settings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                got_to_settings();
-            }
-        });
 
         profile_photo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,6 +108,21 @@ public class MyProfileActivity extends BaseActivity {
             }
         });
 
+        recyclerView.addOnItemTouchListener(new PlansAdapter.RecyclerTouchListener(getApplicationContext(), recyclerView, new PlansAdapter.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+
+                Intent intent = new Intent(getApplicationContext(), PlanActivity.class);
+                intent.putExtra(PLAN, planList.get(position));
+                startActivity(intent);
+                finish();
+            }
+            @Override
+            public void onLongClick(View view, int position) {
+            }
+
+        }));
+
     }
 
     private void setData() {
@@ -150,9 +159,8 @@ public class MyProfileActivity extends BaseActivity {
         nombre = (TextView) findViewById(R.id.profile_tv_name);
         edad = (TextView)findViewById(R.id.profile_tv_edad);
         friends = (TextView)findViewById(R.id.tv_myprofile_number_friends);
-        amigos = (LinearLayout)findViewById(R.id.ll_myprofile_amigos);
+        amigos = (RelativeLayout)findViewById(R.id.ll_myprofile_amigos);
         profile_photo = (ImageView) findViewById(R.id.profile_iv_profile_image);
-        bt_settings = (ImageButton)findViewById(R.id.ib_profile_settings);
         planes_apuntados = (TextView)findViewById(R.id.tv_planes_apuntados);
         planList = new ArrayList<>();
 
