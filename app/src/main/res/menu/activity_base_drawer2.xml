@@ -1,23 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Single menu item
+         Set id, icon and Title for each menu item
+    -->
+    <item android:id="@+id/menu_bookmark"
+        android:icon="@drawable/ic_account_circle_black_36dp"
+        android:title="Bookmark" />
 
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_plans"
-            android:icon="@drawable/ic_adn"
-            android:title="" />
-        <item
-            android:id="@+id/nav_myplans"
-            android:icon="@drawable/ic_handshake"
-            android:title="" />
-        <item
-            android:id="@+id/nav_friends"
-            android:icon="@drawable/ic_friends"
-            android:title="" />
-        <item
-            android:id="@+id/nav_profile"
-            android:icon="@drawable/ic_friends"
-            android:title="" />
-    </group>
+    <item android:id="@+id/menu_save"
+        android:icon="@drawable/ic_account_circle_black_36dp"
+        android:title="Save" />
 
+    <item android:id="@+id/menu_search"
+        android:icon="@drawable/ic_account_circle_black_36dp"
+        android:title="Search" />
+
+    <item android:id="@+id/menu_share"
+        android:icon="@drawable/ic_account_circle_black_36dp"
+        android:title="Share" />
+
+    <item android:id="@+id/menu_delete"
+        android:icon="@drawable/ic_account_circle_black_36dp"
+        android:title="Delete" />
+
+    <item android:id="@+id/menu_preferences"
+        android:icon="@drawable/ic_account_circle_black_36dp"
+        android:title="Preferences" />
 </menu>
